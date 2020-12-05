@@ -11,6 +11,17 @@
   
   </div>
 </template>
+<script>
+//import api from './utils/api.js'
+
+export default {
+  mounted() {
+      //nconsole.log(api.requestTest());
+      console.log(this.$api.requestTest());
+
+}
+}
+</script>
 
 <style lang="scss">
 #app {
