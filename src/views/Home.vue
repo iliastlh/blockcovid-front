@@ -1,7 +1,12 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" src="../assets/BlockCovid.png">
+    <br>
+    <HelloWorld msg="Bienvenue sur Blockcovid.be"/>
+    <h3>Quel est votre Statut : </h3>
+    <button type="button" class="btn btn-primary btn-lg active mt-0" id="btn-medecin">Medecin</button>
+    <button type="button" class="btn btn-primary btn-lg active" id="btn-etablissement">Etablissement</button>
+
   </div>
 </template>
 
@@ -16,3 +21,8 @@ export default {
   }
 }
 </script>
+<style >
+.mt-0{
+margin-right: 50;
+}
+</style>
