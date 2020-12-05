@@ -5,41 +5,41 @@
 
             <div class="form-group">
                 <label>Nom Légal de la société</label>
-                <input type="text" class="form-control form-control-lg"/>
+                <input type="text" class="form-control form-control-lg" v-model="nameEstablishment"/>
             </div>
 
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" class="form-control form-control-lg" />
+                <input type="email" class="form-control form-control-lg" v-model="email"/>
             </div>
             
             <div class="form-group">
                 <label>Numéro de téléphone</label>
-                <input type="text" class="form-control form-control-lg"/>
+                <input type="text" class="form-control form-control-lg" v-model="phonenumber"/>
             </div>
             <div class="row">
             <div class="form-group col">
                 <label>Adresse</label>
-                <input type="text" class="form-control form-control-lg"/>
+                <input type="text" class="form-control form-control-lg" v-model="address"/>
             </div>
             <div class="form-group col-md-2">
                 <label>Numéro</label>
-                <input type="number" class="form-control form-control-lg"/>
+                <input type="number" class="form-control form-control-lg" v-model="houseNumber"/>
             </div>
             </div>
             <div class="form-group">
                 <label>Code Postal</label>
-                <input type="number" class="form-control form-control-lg"/>
+                <input type="number" class="form-control form-control-lg" v-model="postCode"/>
             </div>
 
             <div class="form-group">
                 <label>Mot de passe</label>
-                <input type="password" class="form-control form-control-lg" />
+                <input type="password" class="form-control form-control-lg" v-model="password" />
             </div>
 
              <div class="form-group">
                 <label>Confirmer mot de passe</label>
-                <input type="password" class="form-control form-control-lg" />
+                <input type="password" class="form-control form-control-lg" v-model="passwordAgain" />
             </div>
 
             <button type="submit" class="btn btn-dark btn-lg btn-block">Valider Inscription</button>
@@ -54,9 +54,74 @@
 
 <script>
     export default {
+        name: 'register',
         data() {
-            return {}
+            return {
+                nameEstablishment: '',
+                email: '',
+                phonenumber: '',
+                address: '',
+                password: '',
+                passwordAgain : '',
+                houseNumber : 0,
+                postcode : '',
+                errors: []
+            }
+        },methods :{
+                onSubmit(){
+                    this.errors =[];
+
+                if(!this.nameEstablishment){
+                        this.errors.push("Veuillez indiquer le nom de l'établissement");
+                }
+                 if(!this.email){
+                        this.errors.push("Veuillez indiquer votre email");
+
+                }
+                 if(!this.phonenumber){
+                        this.errors.push("Veuillez indiquer votre no de telephone");
+                }
+                 if(!this.address){
+                        this.errors.push("Veuillez indiquer l'adresse de l'etablissement");
+
+                }
+                 if(!this.houseNumber){
+                        this.errors.push("Veuillez indiquer le no de votre etablissement");
+
+                }
+                 if(!this.postcode){
+                                            this.errors.push("Veuillez indiquer le code postal");
+
+                }
+                 if(!this.password){
+                                            this.errors.push("Veuillez indiquer le mdp");
+
+                }
+                 if(!this.passwordAgain){
+                                            this.errors.push("Veuillez confirmer votre mot de passe");
+
+                }
+                 if(this.passwordAgain!==this.password){
+                                            this.errors.push("Les mots de passe sont différents");
+
+                }
+                if(!this.errors.length){
+                   
+                   /*const data =  { 
+                    nameEstablishment:this.nameEstablishment,
+                    password : this.password,
+                    passwordAgain:this.passwordAgain,
+                    email:this.email,
+                    address:this.address,
+                    houseNumber :this.houseNumber,
+                    phonenumber :this.phonenumber,
+                    postcode : this.postcode
+                   }*/
+                }
+                }
         }
+    
+
     }
 </script>
 <style scoped>
