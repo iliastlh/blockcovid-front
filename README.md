@@ -43,3 +43,5 @@ DB_PASSWORD=  // mdp
 
 CACHE_DRIVER=file
 QUEUE_CONNECTION=sync
+
+

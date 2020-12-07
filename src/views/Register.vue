@@ -1,7 +1,16 @@
 <template>
     <div class="drop-down menu">
-        <form class ="px-4 py-3">
+        <form class ="px-4 py-3" v-on:submit.prevent ="onSubmit" >
             <h3>Inscription Medecin</h3>
+
+             <div class="alert alert-danger" v-if="errors.length">
+            <ul class="mb-0">
+                <li v-for="(error,index) in errors" :key="index">
+                    {{ error }}
+                </li>
+            </ul>
+
+          </div>
             <div class=row>
             <div class="form-group col">
                 <label>Nom</label>
@@ -34,7 +43,7 @@
                 <input type="password" class="form-control form-control-lg" v-model="passwordAgain"/>
             </div>
 
-            <button type="submit" class="btn btn-dark btn-lg btn-block"> Valider Inscription</button>
+            <button type="submit" class="btn btn-dark btn-lg btn-block" > Valider Inscription</button>
 
             <p class="forgot-password text-right">
                 Déja inscris ?  
@@ -45,8 +54,7 @@
 </template>
 
 <script>
-    import axios from "axios";
-
+import axios from 'axios'
     export default {
         name: 'register',
         data() {
@@ -60,8 +68,31 @@
                 errors: []
             }
         },methods :{
-            onSubmit(){
-                this.errors =[];
+                onSubmit(){
+                    this.errors =[];
+                    
+                    axios.post('register',{ 
+                    surname : this.surname,
+                    password : this.password,
+                    passwordAgain : this.passwordAgain,
+                    email:this.email,
+                    firstname : this.firstname,
+                    phonenumber : this.phonenumber
+                   });
+
+                   this.$router.push('/login');
+
+                   /*axios.post('http://localhost:8080/',data)
+                   .then(
+                       res=>{
+                           console.log(res);
+                       }
+                   ).catch(
+                       err=>{
+                           console.log(err);
+                       }
+                   )
+*/
 
                 if(!this.firstname){
                     this.errors.push("Veuillez indiquer le nom de l'établissement");
@@ -91,21 +122,18 @@
                 }
                 if(!this.errors.length){
                    
-                    const doctor = {
-                        firstname: this.firstname,
-                        name: this.name,
-                        email: this.email,
-                        numero: this.phonenumber,
-                        password: this.password,
-                        passwordAgain : this.passwordAgain
-                    }
+                    axios.post('register',{ 
+                    prenom: this.firstname,
+                    name:this.name,
+                    password : this.password,
+                    passwordAgain:this.passwordAgain,
+                    email:this.email,
+                   });
 
-                    axios
-                    .post('medecins/inscription', doctor)
-                    .then()
+                   this.$router.push('/login');
                 }
             },
-        },
+        }
     }
 </script>
 <style scoped>

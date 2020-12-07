@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/login">Se connecter</router-link> | 
@@ -7,16 +8,17 @@
       <router-link to="/registerEstablishment">Inscription Etablissement</router-link> |
       <router-link to="/about">About</router-link>
     </div>
+    
     <router-view/>
   </div>
 </template>
 <script>
-//import api from './utils/api.js'
 
 export default {
   mounted() {
-    console.log(this.$api.requestTest());
-  }
+      console.log(this.$api.requestTest());
+
+}
 }
 </script>
 

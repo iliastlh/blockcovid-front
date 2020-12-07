@@ -1,8 +1,15 @@
 <template>
     <div class="drop-down menu">
-        <form class ="px-4 py-3">
+        <form class ="px-4 py-3" v-on:submit.prevent="onSubmit">
             <h3>Inscription de votre établissement</h3>
 
+            <div class="alert alert-danger" v-if="errors.length">
+            <ul class="mb-0">
+                <li v-for="(error,index) in errors" :key="index">
+                    {{ error }}
+                </li>
+            </ul>
+            </div>
             <div class="form-group">
                 <label>Nom Légal de la société</label>
                 <input type="text" class="form-control form-control-lg" v-model="nameEstablishment"/>
@@ -26,12 +33,11 @@
                 <label>Numéro</label>
                 <input type="number" class="form-control form-control-lg" v-model="houseNumber"/>
             </div>
-            </div>
             <div class="form-group">
                 <label>Code Postal</label>
-                <input type="number" class="form-control form-control-lg" v-model="postCode"/>
+                <input type="text" class="form-control form-control-lg" v-model="postCode"/>
             </div>
-
+            </div>
             <div class="form-group">
                 <label>Mot de passe</label>
                 <input type="password" class="form-control form-control-lg" v-model="password" />
@@ -42,7 +48,7 @@
                 <input type="password" class="form-control form-control-lg" v-model="passwordAgain" />
             </div>
 
-            <button type="submit" class="btn btn-dark btn-lg btn-block">Valider Inscription</button>
+            <button type="submit" class="btn btn-dark btn-lg btn-block" v-on:click.prevent="onSubmit">Valider Inscription</button>
 
             <p class="forgot-password text-right">
                 Déja inscris ?  
@@ -53,9 +59,7 @@
 </template>
 
 <script>
-
-    import axios from "axios"
-
+import axios from 'axios';
     export default {
         name: 'register',
         data() {
@@ -71,8 +75,8 @@
                 errors: []
             }
         },methods :{
-                onSubmit(){
-                this.errors =[];
+                async onSubmit(){
+                    this.errors =[];
 
                 if(!this.nameEstablishment){
                     this.errors.push("Veuillez indiquer le nom de l'établissement");
@@ -110,24 +114,23 @@
                 }
                 if(!this.errors.length){
                    
-                    const data =  { 
-                        nameEstablishment:this.nameEstablishment,
-                        password : this.password,
-                        passwordAgain:this.passwordAgain,
-                        email:this.email,
-                        address:this.address,
-                        houseNumber :this.houseNumber,
-                        phonenumber :this.phonenumber,
-                        postcode : this.postcode
-                    }
+                   axios.post('registerEstablishment',{ 
+                    nameEstablishment:this.nameEstablishment,
+                    password : this.password,
+                    passwordAgain:this.passwordAgain,
+                    email:this.email,
+                    address:this.address,
+                    houseNumber :this.houseNumber,
+                    phonenumber :this.phonenumber,
+                    postcode : this.postcode
+                   });
 
-                    axios
-                    .post('etablissements/inscription', data)
-                    .then()
+                   this.$router.push('/login');
+
+                }
                 }
             }
         }
-    }
 </script>
 <style scoped>
 
