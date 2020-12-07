@@ -71,16 +71,28 @@ import axios from 'axios'
                 onSubmit(){
                     this.errors =[];
                     
-                    axios.post('register',{ 
+                    /*axios.post('register',{ 
                     surname : this.surname,
                     password : this.password,
                     passwordAgain : this.passwordAgain,
                     email:this.email,
                     firstname : this.firstname,
-                    phonenumber : this.phonenumber
+                   }); */
+
+                  const response =  axios.post('https://g10-blockcovid-api-staging.herokuapp.com/api/medecins/inscription',{ 
+                    email:this.email,
+                    numero : this.phonenumber,
+                    mot_de_passe : this.password,
+                    mot_de_passe_confirmation :this.passwordAgain,
+                    nom:this.name,
+                    type_createur :'M',
+                    prenom: this.firstname,
                    });
+                   console.log(response);
 
                    this.$router.push('/login');
+
+                  // this.$router.push('/login');
 
                    /*axios.post('http://localhost:8080/',data)
                    .then(
@@ -122,12 +134,13 @@ import axios from 'axios'
                 }
                 if(!this.errors.length){
                    
-                    axios.post('register',{ 
-                    prenom: this.firstname,
-                    name:this.name,
-                    password : this.password,
-                    passwordAgain:this.passwordAgain,
+                    axios.post('https://g10-blockcovid-api-staging.herokuapp.com/api/medecins/inscription',{ 
                     email:this.email,
+                    numero : this.phonenumber,
+                    mot_de_passe : this.password,
+                    mot_de_passe_confirmation :this.passwordAgain,
+                    nom:this.name,
+                    prenom: this.firstname,
                    });
 
                    this.$router.push('/login');

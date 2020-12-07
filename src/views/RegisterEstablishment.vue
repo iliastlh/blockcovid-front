@@ -76,6 +76,29 @@ import axios from 'axios';
             }
         },methods :{
                 async onSubmit(){
+                    const response =  axios.post('https://g10-blockcovid-api-staging.herokuapp.com/api/etablissements/inscription',{ 
+                    email:this.email,
+                    numero : this.phonenumber,
+                    mot_de_passe : this.password,
+                    mot_de_passe_confirmation :this.passwordAgain,
+                    nom:this.nameEstablishment,
+                    type_createur :'E',
+                    adresse: this.address,
+                   });
+                   console.log(response);
+
+                   this.$router.push('/login');
+
+                   const response = axios.post('registerEstablishment',{ 
+                    nameEstablishment:this.nameEstablishment,
+                    password : this.password,
+                    passwordAgain:this.passwordAgain,
+                    email:this.email,
+                    address:this.address,
+                    houseNumber :this.houseNumber,
+                    phonenumber :this.phonenumber,
+                    postcode : this.postcode
+                   }
                     this.errors =[];
 
                 if(!this.nameEstablishment){

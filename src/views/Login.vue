@@ -43,13 +43,16 @@ import axios from 'axios'
             }
         },methods :{
                 async onSubmit(){
-                    const response = await axios.post('login',{
+                    const response = await axios.post('https://g10-blockcovid-api-staging.herokuapp.com/api/connexion',{
                         email : this.email,
-                        password: this.password
+                        mot_de_passe: this.password
                     });
                     
-                    localStorage.setItem('token' ,response.data.token);
+                    localStorage.setItem('token' ,response.token);
+                    console.log("voici la réponse "+response);
+                    console.log("voici le token "+response.token);
 
+                    
                     this.errors =[];
 
                  if(!this.email){
