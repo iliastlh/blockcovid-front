@@ -22,6 +22,7 @@
         methods: {
             generate: function () {
                 this.id_qr = String(Math.floor(Math.random() * 1000000));
+                
             }
         }
     }

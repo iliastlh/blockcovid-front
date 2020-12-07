@@ -4,6 +4,7 @@ import router from './router'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import api from './utils/api';
+import 'axios';
 
 
 Vue.prototype.$api = api;

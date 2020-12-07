@@ -3,10 +3,7 @@
     <img alt="Vue logo" src="../assets/BlockCovid.png">
     <br>
     <HelloWorld msg="Bienvenue sur Blockcovid.be"/>
-    <h3>Quel est votre Statut : </h3>
-    <button type="button" class="btn btn-primary btn-lg active mt-0" id="btn-medecin">Medecin</button>
-    <button type="button" class="btn btn-primary btn-lg active" id="btn-etablissement">Etablissement</button>
-    <button v-on:click= "afficher"></button>
+   
 
   </div>
 </template>
@@ -21,9 +18,7 @@ export default {
     HelloWorld
   },
 methods : {
-  afficher : function(){
-     console.log(this.$api.requestTest());
-  }
+
 }
 }
 </script>

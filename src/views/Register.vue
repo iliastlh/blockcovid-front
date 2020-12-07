@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import axios from 'axios'
     export default {
         name: 'register',
         data() {
@@ -69,6 +70,29 @@
         },methods :{
                 onSubmit(){
                     this.errors =[];
+                    
+                    axios.post('register',{ 
+                    surname : this.surname,
+                    password : this.password,
+                    passwordAgain : this.passwordAgain,
+                    email:this.email,
+                    firstname : this.firstname,
+                    phonenumber : this.phonenumber
+                   });
+
+                   this.$router.push('/login');
+
+                   /*axios.post('http://localhost:8080/',data)
+                   .then(
+                       res=>{
+                           console.log(res);
+                       }
+                   ).catch(
+                       err=>{
+                           console.log(err);
+                       }
+                   )
+*/
 
                 if(!this.firstname){
                         this.errors.push("Veuillez indiquer le nom de l'établissement");
@@ -97,7 +121,7 @@
                         this.errors.push("Les mots de passe sont différents");
 
                 }
-                if(!this.errors.length){
+                /*if(!this.errors.length){
                    
                   const data =  { 
                     surname : this.surname,
@@ -108,7 +132,7 @@
                     phonenumber : this.phonenumber
                    }
                 console.log(data);
-                }
+                }*/
 
                 
                 }

@@ -59,6 +59,7 @@
 </template>
 
 <script>
+import axios from 'axios';
     export default {
         name: 'register',
         data() {
@@ -74,7 +75,7 @@
                 errors: []
             }
         },methods :{
-                onSubmit(){
+                async onSubmit(){
                     this.errors =[];
 
                 if(!this.nameEstablishment){
@@ -113,7 +114,7 @@
                 }
                 if(!this.errors.length){
                    
-                   /*const data =  { 
+                   axios.post('registerEstablishment',{ 
                     nameEstablishment:this.nameEstablishment,
                     password : this.password,
                     passwordAgain:this.passwordAgain,
@@ -122,7 +123,10 @@
                     houseNumber :this.houseNumber,
                     phonenumber :this.phonenumber,
                     postcode : this.postcode
-                   }*/
+                   });
+
+                   this.$router.push('/login');
+
                 }
                 }
         }

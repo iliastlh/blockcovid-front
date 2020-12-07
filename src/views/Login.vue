@@ -32,8 +32,9 @@
 </template>
 
 <script>
+import axios from 'axios'
     export default {
-        name: 'login',
+        name: 'Login',
         data() {
             return {
                 email: '',
@@ -41,8 +42,14 @@
                 errors: []
             }
         },methods :{
-                onSubmit(){
+                async onSubmit(){
+                    const response = await axios.post('login',{
+                        email : this.email,
+                        password: this.password
+                    });
                     
+                    localStorage.setItem('token' ,response.data.token);
+
                     this.errors =[];
 
                  if(!this.email){
@@ -65,7 +72,7 @@
                 }
                 console.log(this.email);
                 console.log(this.errors);
-                                  
+                localStorage.setItem()
        
             }
         }
