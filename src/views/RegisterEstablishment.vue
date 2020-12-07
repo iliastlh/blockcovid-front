@@ -53,6 +53,9 @@
 </template>
 
 <script>
+
+    import axios from "axios"
+
     export default {
         name: 'register',
         data() {
@@ -69,59 +72,61 @@
             }
         },methods :{
                 onSubmit(){
-                    this.errors =[];
+                this.errors =[];
 
                 if(!this.nameEstablishment){
-                        this.errors.push("Veuillez indiquer le nom de l'établissement");
+                    this.errors.push("Veuillez indiquer le nom de l'établissement");
                 }
                  if(!this.email){
-                        this.errors.push("Veuillez indiquer votre email");
+                    this.errors.push("Veuillez indiquer votre email");
 
                 }
                  if(!this.phonenumber){
-                        this.errors.push("Veuillez indiquer votre no de telephone");
+                    this.errors.push("Veuillez indiquer votre no de telephone");
                 }
                  if(!this.address){
-                        this.errors.push("Veuillez indiquer l'adresse de l'etablissement");
+                    this.errors.push("Veuillez indiquer l'adresse de l'etablissement");
 
                 }
                  if(!this.houseNumber){
-                        this.errors.push("Veuillez indiquer le no de votre etablissement");
+                    this.errors.push("Veuillez indiquer le no de votre etablissement");
 
                 }
                  if(!this.postcode){
-                                            this.errors.push("Veuillez indiquer le code postal");
+                    this.errors.push("Veuillez indiquer le code postal");
 
                 }
                  if(!this.password){
-                                            this.errors.push("Veuillez indiquer le mdp");
+                    this.errors.push("Veuillez indiquer le mdp");
 
                 }
                  if(!this.passwordAgain){
-                                            this.errors.push("Veuillez confirmer votre mot de passe");
+                    this.errors.push("Veuillez confirmer votre mot de passe");
 
                 }
                  if(this.passwordAgain!==this.password){
-                                            this.errors.push("Les mots de passe sont différents");
+                    this.errors.push("Les mots de passe sont différents");
 
                 }
                 if(!this.errors.length){
                    
-                   /*const data =  { 
-                    nameEstablishment:this.nameEstablishment,
-                    password : this.password,
-                    passwordAgain:this.passwordAgain,
-                    email:this.email,
-                    address:this.address,
-                    houseNumber :this.houseNumber,
-                    phonenumber :this.phonenumber,
-                    postcode : this.postcode
-                   }*/
-                }
-                }
-        }
-    
+                    const data =  { 
+                        nameEstablishment:this.nameEstablishment,
+                        password : this.password,
+                        passwordAgain:this.passwordAgain,
+                        email:this.email,
+                        address:this.address,
+                        houseNumber :this.houseNumber,
+                        phonenumber :this.phonenumber,
+                        postcode : this.postcode
+                    }
 
+                    axios
+                    .post('etablissements/inscription', data)
+                    .then()
+                }
+            }
+        }
     }
 </script>
 <style scoped>

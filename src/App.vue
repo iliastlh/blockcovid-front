@@ -8,7 +8,6 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>
-  
   </div>
 </template>
 <script>
@@ -16,10 +15,8 @@
 
 export default {
   mounted() {
-      //nconsole.log(api.requestTest());
-      console.log(this.$api.requestTest());
-
-}
+    console.log(this.$api.requestTest());
+  }
 }
 </script>
 

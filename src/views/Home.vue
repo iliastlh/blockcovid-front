@@ -20,11 +20,11 @@ export default {
   components: {
     HelloWorld
   },
-methods : {
-  afficher : function(){
-     console.log(this.$api.requestTest());
+  methods : {
+    afficher : function(){
+      console.log(this.$api.requestTest());
+    }
   }
-}
 }
 </script>
 <style >

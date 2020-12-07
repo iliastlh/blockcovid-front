@@ -5,12 +5,12 @@
 
             <div class="form-group">
                 <label>Email address</label>
-                <input type="email" class="form-control form-control-lg" />
+                <input type="email" class="form-control form-control-lg" v-model="email"/>
             </div>
 
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control form-control-lg" />
+                <input type="password" class="form-control form-control-lg" v-model="password"/>
             </div>
 
             <button type="submit" class="btn btn-dark btn-lg btn-block">Sign Up</button>
@@ -24,9 +24,25 @@
 </template>
 
 <script>
+import Axios from 'axios'
     export default {
         data() {
-            return {}
+            return {
+                email: '',
+                password: '',
+            }
+        },
+        methods: {
+            onSubmit(){
+                
+                const data = {
+                    email: this.email,
+                    password: this.password
+                }
+
+                Axios
+                .post('connexion', data)
+            }
         }
     }
 </script>
